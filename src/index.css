@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -97,5 +91,55 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Canvas styles */
+  .excalidraw-canvas {
+    touch-action: none;
+    background-color: var(--canvas-bg);
+  }
+  
+  /* Toolbar styles */
+  .toolbar-button {
+    @apply relative flex h-10 w-10 items-center justify-center rounded-md transition-all duration-200 ease-in-out;
+  }
+  
+  .toolbar-button:hover {
+    @apply bg-tools-hover;
+  }
+  
+  .toolbar-button.active {
+    @apply bg-tools-active;
+  }
+  
+  .toolbar-button::after {
+    content: "";
+    @apply absolute inset-0 rounded-md opacity-0 ring-2 ring-primary/50 transition-opacity duration-200;
+  }
+  
+  .toolbar-button:focus-visible::after {
+    @apply opacity-100;
+  }
+  
+  /* Color palette styles */
+  .color-swatch {
+    @apply h-6 w-6 cursor-pointer rounded-full border-2 border-transparent transition-all duration-200;
+  }
+  
+  .color-swatch.active {
+    @apply border-primary shadow-sm;
+  }
+  
+  .color-swatch:hover {
+    @apply scale-110 shadow-md;
+  }
+  
+  /* Grid pattern for canvas */
+  .canvas-grid {
+    background-size: 40px 40px;
+    background-image:
+      linear-gradient(to right, var(--canvas-grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--canvas-grid) 1px, transparent 1px);
   }
 }
